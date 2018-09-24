@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
+import logotipo from './img/logotipo-lux-login.png'
 import firebase from 'firebase'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth' // Da directamente los botenes y el acceso a la utenticacion
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth' // Da directamente los botenes y el acceso a la utenticacion y StyledFirebaseAuth redireccina al inicio de sesion y se liga directamente con css
 
 firebase.initializeApp ({
   apiKey: "AIzaSyBCu6E1u8eLveoO4RNeXkBdEbKVQfy8KXw",
@@ -13,15 +14,16 @@ firebase.initializeApp ({
 });
 
 
-class App extends Component {
+class Login extends Component {
   state={ isSingedIn : false}
   uiConfig = {
-    signInFlow : 'popup',
+    signInFlow : 'redirect',
     signInOptions : [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID
+      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     ],
     callbacks : {
       signInSucess : () => false
@@ -37,9 +39,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Aqui debe ir Lux</h1>
-        </header>
+        <div >
+          <img alt="Lux" src = {logotipo}/>
+          <h3>"No hay logro pequeño, ni paso que no cuente."</h3>
+          <p>Encuentra en LUX un espacio seguro y la motivación para atravesar esos momentos difíciles, al leer y compartir las pequeñas metas que iluminan tu día a día.</p>
+        </div>
         {this.state.isSingedIn ? (
         <span>
            <div>Hola</div>
@@ -59,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;
