@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import '../App.css';
-import logotipo from './img/logotipo-lux-login.png'
 import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth' // Da directamente los botenes y el acceso a la utenticacion y StyledFirebaseAuth redireccina al inicio de sesion y se liga directamente con css
+import Txt from './Txt'
+import logotipo from './img/logotipo-lux-login.png'
+import '../App.css';
 
-firebase.initializeApp ({
+
+firebase.initializeApp({
   apiKey: "AIzaSyBCu6E1u8eLveoO4RNeXkBdEbKVQfy8KXw",
   authDomain: "ejerciciocrud.firebaseapp.com",
   databaseURL: "https://ejerciciocrud.firebaseio.com",
@@ -15,24 +17,24 @@ firebase.initializeApp ({
 
 
 class Login extends Component {
-  state={ isSingedIn : false}
+  state = { isSingedIn: false }
   uiConfig = {
-    signInFlow : 'redirect',
-    signInOptions : [
+    signInFlow: 'redirect',
+    signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID
       // firebase.auth.GithubAuthProvider.PROVIDER_ID,
       // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     ],
-    callbacks : {
-      signInSucess : () => false
+    callbacks: {
+      signInSucess: () => false
     }
   }
 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({isSingedIn: !!user})
+      this.setState({ isSingedIn: !!user })
     })
   }
 
@@ -40,24 +42,26 @@ class Login extends Component {
     return (
       <div className="App">
         <div >
-          <img alt="Lux" src = {logotipo}/>
+          <img alt="Lux" src={logotipo} width = "40%" height = "50%"  />
           <h3>"No hay logro pequeño, ni paso que no cuente."</h3>
           <p>Encuentra en LUX un espacio seguro y la motivación para atravesar esos momentos difíciles, al leer y compartir las pequeñas metas que iluminan tu día a día.</p>
         </div>
         {this.state.isSingedIn ? (
-        <span>
-           <div>Hola</div>
-           <h3>{firebase.auth().currentUser.displayName} Bienvenidx a Lux</h3>
-           <img alt = "Foto de perfil" src = {firebase.auth().currentUser.photoURL}width = "10%" height = "10%"/>
-           
-           <button onClick = {() => firebase.auth().signOut()}>Salir</button> 
-        </span>
-           ):(
-             <StyledFirebaseAuth
-             uiConfig = {this.uiConfig}
-             firebaseAuth={firebase.auth()}
-             />
-           )}
+          <div>
+            <div>Hola</div>
+            <h3>{firebase.auth().currentUser.displayName} Bienvenidx a Lux</h3>
+            <img alt="Foto de perfil" src={firebase.auth().currentUser.photoURL} width="10%" height="10%" />
+            <button onClick={() => firebase.auth().signOut()}>Salir</button>
+            <div>
+              <Txt />
+            </div>
+          </div>
+        ) : (
+            <StyledFirebaseAuth
+              uiConfig={this.uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          )}
       </div>
     )
   }
