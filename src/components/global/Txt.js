@@ -12,8 +12,6 @@ class Txt extends Component {
             index: '',
             datas: [],
         }
-        
-        
     }
 
     fCompartir = (e) => {
