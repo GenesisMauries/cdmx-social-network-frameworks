@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { button , Form , FormControl } from 'react-bootstrap';
 import './css/Txt.css'
 
 class Txt extends Component {
@@ -93,8 +92,5 @@ class Txt extends Component {
         );
     }
 }
-
-
-
 
 export default Txt;

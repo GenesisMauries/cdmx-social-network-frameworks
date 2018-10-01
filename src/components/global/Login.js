@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth' // Da directamente los botenes y el acceso a la utenticacion y StyledFirebaseAuth redireccina al inicio de sesion y se liga directamente con css
-import Txt from './Txt'
-// import Post from './Post'
+// import Txt from './Txt'
+import Post from './Post'
 import logotipo from './img/logotipo-lux-login.png'
 import '../App.css';
 
@@ -43,7 +43,7 @@ class Login extends Component {
     return (
       <div className="App">
         <div >
-          <img alt="Lux" src={logotipo} width="40%" height="50%" />
+          <img alt="Lux" src={logotipo} width="25%" height="30%" />
           <h3>"No hay logro pequeño, ni paso que no cuente."</h3>
           <p>Encuentra en LUX un espacio seguro y la motivación para atravesar esos momentos difíciles, al leer y compartir las pequeñas metas que iluminan tu día a día.</p>
         </div>
@@ -54,8 +54,8 @@ class Login extends Component {
             <img alt="Foto de perfil" src={firebase.auth().currentUser.photoURL} width="10%" height="10%" />
             <button onClick={() => firebase.auth().signOut()}>Salir</button>
             <div>
-              <Txt />
-              {/* <Post /> */}
+              {/* <Txt /> */}
+              <Post />
             </div>
           </div>
         ) : (
