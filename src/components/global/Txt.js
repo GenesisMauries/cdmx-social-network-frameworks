@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { button , Form , FormControl } from 'react-bootstrap';
 import './css/Txt.css'
+import Post from './Post'
 
 class Txt extends Component {
     constructor(props) {
@@ -12,8 +12,6 @@ class Txt extends Component {
             index: '',
             datas: [],
         }
-        
-        
     }
 
     fCompartir = (e) => {
@@ -22,16 +20,16 @@ class Txt extends Component {
         let datas = this.state.datas;
         // recibe el valor del textarea
         let post = this.refs.post.value;
-        
+
         // si no hay cambio en el act se agrega algo al array
         if (this.state.act === 0) {
-               // El valor de post entra en un objeto para guardarlo en datas del estado
+            // El valor de post entra en un objeto para guardarlo en datas del estado
             let data = {
                 post
             }
             datas.push(data);
             console.log(this.state)
-        } else {     
+        } else {
             //                  
             let index = this.state.index;
             datas[index].post = post;
@@ -45,7 +43,6 @@ class Txt extends Component {
         });
 
         this.refs.myPost.reset(); // Restaura los valores del formulario
-        
     }
 
     fnDelete = (i) => {
@@ -58,7 +55,6 @@ class Txt extends Component {
         });
 
         this.refs.myPost.reset(); //método restaura los valores predeterminados de un elemento de formulario.
-        
     }
 
     fnEdit = (i) => {
@@ -72,31 +68,22 @@ class Txt extends Component {
     }
 
     render() {
-        let datas = this.state.datas;
+        // Utilizo reverse para que se posicione el mas reciente al inicio (By Silvana)
+        let datas = this.state.datas.reverse();
         return (
             <div>
                 <h2>{this.state.title}</h2>
                 <form ref="myPost" className="myPost">
                     <input type="text" ref="post" placeholder="Escribelo aquí" className="myInput" />
-
                     <button onClick={(e) => this.fCompartir(e)} className="mybutton">Compartir</button>
                 </form>
-                <div>
-                {/* Funcion para iterar los post */}
-                    {datas.map((data, i) =>
-                        <li key={i} className="myList">
-                            {i + 1}. {data.post}
-                            <button onClick={() => this.fnDelete(i)} className="myListButton">Borrar </button>
-                            <button onClick={() => this.fnEdit(i)} className="myListButton">Editar </button>
-                        </li>
-                    )}
-                </div>
+                <Post datas= {datas} fnEdit={this.fnEdit} fnDelete={this.fnDelete}/>
             </div>
-        );
+            
+            
+            
+        )
     }
 }
-
-
-
 
 export default Txt;
