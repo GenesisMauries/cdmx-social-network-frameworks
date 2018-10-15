@@ -1,0 +1,45 @@
+#firebaseui_container{
+    margin-top: 0%;
+    width: 50%;
+    margin: 1.5em auto;
+    padding: 3em;
+    border: 1px solid lightgrey;
+    background: white;
+}
+/* .textoLux{
+    width: 50%;
+    margin: 1.5em auto;
+    padding: 1em;
+    border: 1px solid lightgrey;
+    background: white;
+    text-align: center;
+    color: #001f5e;
+} */
+#logo-index{
+    width: 35%;
+    height: 45%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.container p{
+    font-weight: bold;
+    display: block;
+}
+#description-section{
+    background: transparent;
+    padding: 0;
+    text-align: center;
+    color: #001f5e;
+    border: none;
+}
+#description-section h1{
+    /* margin: 5% auto; */
+    font-weight: 700;
+}
+
+#description-section p{
+    margin: 0 auto 5% auto;
+    width: 90%;
+    font-size: 1.5em; 
+}
